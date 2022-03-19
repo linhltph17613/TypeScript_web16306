@@ -5,7 +5,7 @@ import type { IProduct } from "./types/product";
 import ShowInfo from "./component/Showinfo";
 import axios from "axios";
 import Product from "./component/Product";
-import { list, remove } from "./api/product";
+import { add, list, remove } from "./api/product";
 import { Routes, Route, NavLink, Navigate } from "react-router-dom";
 import WebsiteLayout from "./pages/layouts/WebsiteLayout";
 import Dashboard from "./pages/Dashboard";
@@ -16,11 +16,12 @@ import ProductAdd from "./pages/ProductAdd";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [product, setProducts] = useState<IProduct[]>([]);
+  const [products, setProducts] = useState<IProduct[]>([]);
 
   useEffect(() => {
     const getProducts = async () => {
       const { data } = await list();
+      console.log(data);
       setProducts(data);
     };
     getProducts();
@@ -31,7 +32,12 @@ function App() {
     remove(id);
 
     //rerender
-    setProducts(product.filter((item) => item._id !== id));
+    setProducts(products.filter((item) => item._id !== id));
+  };
+
+  const onHandleAdd = async (product: IProduct) => {
+    const { data } = await add(product);
+    setProducts([...products, data]);
   };
   return (
     <div className="App">
@@ -69,8 +75,13 @@ function App() {
             <Route index element={<Navigate to="dashboard" />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="products">
-              <Route element={<ProductManager />} />
-              <Route path="add" element={<ProductAdd />} />
+              <Route
+                index
+                element={
+                  <ProductManager products={products} onRemove={removeItem} />
+                }
+              />
+              <Route path="add" element={<ProductAdd onAdd={onHandleAdd} />} />
 
               <Route />
             </Route>
