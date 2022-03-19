@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard";
 import ProductManager from "./pages/layouts/ProductManager";
 import HomePage from "./pages/Home";
 import AdminLayout from "./pages/layouts/AdminLayout";
+import ProductAdd from "./pages/ProductAdd";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -67,7 +68,12 @@ function App() {
           <Route path="admin" element={<AdminLayout />}>
             <Route index element={<Navigate to="dashboard" />} />
             <Route path="dashboard" element={<Dashboard />} />
-            <Route path="products" element={<ProductManager />} />
+            <Route path="products">
+              <Route element={<ProductManager />} />
+              <Route path="add" element={<ProductAdd />} />
+
+              <Route />
+            </Route>
           </Route>
         </Routes>
       </main>
