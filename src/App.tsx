@@ -13,6 +13,7 @@ import ProductManager from "./pages/layouts/ProductManager";
 import HomePage from "./pages/Home";
 import AdminLayout from "./pages/layouts/AdminLayout";
 import ProductAdd from "./pages/ProductAdd";
+import ProductEdit from "./pages/productEdit";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -39,6 +40,7 @@ function App() {
     const { data } = await add(product);
     setProducts([...products, data]);
   };
+
   return (
     <div className="App">
       {/* {product.map((item) => {
@@ -81,6 +83,8 @@ function App() {
                   <ProductManager products={products} onRemove={removeItem} />
                 }
               />
+              <Route path=":id/edit" element={<ProductEdit />} />
+
               <Route path="add" element={<ProductAdd onAdd={onHandleAdd} />} />
 
               <Route />
