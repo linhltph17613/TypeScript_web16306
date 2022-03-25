@@ -5,7 +5,7 @@ import type { IProduct } from "./types/product";
 import ShowInfo from "./component/Showinfo";
 import axios from "axios";
 import Product from "./component/Product";
-import { add, list, remove } from "./api/product";
+import { add, list, remove, update } from "./api/product";
 import { Routes, Route, NavLink, Navigate } from "react-router-dom";
 import WebsiteLayout from "./pages/layouts/WebsiteLayout";
 import Dashboard from "./pages/Dashboard";
@@ -33,12 +33,17 @@ function App() {
     remove(id);
 
     //rerender
-    setProducts(products.filter((item) => item._id !== id));
+    setProducts(products.filter((item) => item.id !== id));
   };
 
   const onHandleAdd = async (product: IProduct) => {
     const { data } = await add(product);
     setProducts([...products, data]);
+  };
+
+  const onHandleUpdate = async (product: IProduct) => {
+    const { data } = await update(product);
+    setProducts(products.map((item) => (item.id == data.id ? data : item)));
   };
 
   return (
@@ -83,7 +88,10 @@ function App() {
                   <ProductManager products={products} onRemove={removeItem} />
                 }
               />
-              <Route path=":id/edit" element={<ProductEdit />} />
+              <Route
+                path=":id/edit"
+                element={<ProductEdit onUpdate={onHandleUpdate} />}
+              />
 
               <Route path="add" element={<ProductAdd onAdd={onHandleAdd} />} />
 

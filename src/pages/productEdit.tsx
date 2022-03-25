@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { read } from "../api/product";
-type Props = {};
+
+type ProductEditProps = {
+  onUpdate: (product: FormInputs) => void;
+};
 type FormInputs = {
   name: string;
   price: number;
 };
-const ProductEdit = (props: Props) => {
+const ProductEdit = (props: ProductEditProps) => {
   const {
     register,
     handleSubmit,
@@ -20,6 +23,7 @@ const ProductEdit = (props: Props) => {
   useEffect(() => {
     const getProduct = async () => {
       const { data } = await read(id);
+
       reset(data);
     };
     getProduct();
@@ -27,6 +31,8 @@ const ProductEdit = (props: Props) => {
 
   const onSubmit: SubmitHandler<FormInputs> = (data) => {
     console.log(data);
+    props.onUpdate(data);
+    navigate("/admin/products");
     //băn ra ngoài app.js
     //redirect sang trang produuct
   };
