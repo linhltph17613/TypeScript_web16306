@@ -13,6 +13,7 @@ import ProductManager from "./pages/layouts/ProductManager";
 import HomePage from "./pages/Home";
 import AdminLayout from "./pages/layouts/AdminLayout";
 import ProductAdd from "./pages/ProductAdd";
+import PrivateRouter from "./component/PrivateRouter";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -78,7 +79,9 @@ function App() {
               <Route
                 index
                 element={
-                  <ProductManager products={products} onRemove={removeItem} />
+                  <PrivateRouter>
+                    <ProductManager products={products} onRemove={removeItem} />
+                  </PrivateRouter>
                 }
               />
               <Route path="add" element={<ProductAdd onAdd={onHandleAdd} />} />
