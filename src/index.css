@@ -12,11 +12,15 @@ code {
     monospace;
 }
 .overlay {
-  @apply overflow-hidden;
+  overflow: hidden;
 }
 .overlay:hover .text-over {
-  @apply visible delay-100;
+  visibility: visible;
+  transition-delay: 100ms;
+}
+.text-over {
+  visibility: hidden;
 }
 .product-item:hover .info-item {
-  @apply opacity-30;
+  opacity: 0.3;
 }
