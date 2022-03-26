@@ -20,5 +20,19 @@
       "price": "123",
       "id": 4
     }
+  ],
+  "users": [
+    {
+      "email": "linhlethuy1911@gmail.com",
+      "password": "$2a$10$N8pX9PBcvsIX4HXBnWCBZOVIcgICiMnJn0tth0WnI6QaEIzC.CQa6",
+      "name": "sản phẩm mới",
+      "id": 1
+    },
+    {
+      "email": "ann@gamil.com",
+      "password": "$2a$10$xH3zzQLam3yO0a/Eb6.tQ..r/J7NlDGClZmz458wDDnsQQUMwuNlS",
+      "name": "ann",
+      "id": 2
+    }
   ]
 }

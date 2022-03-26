@@ -15,6 +15,8 @@ import AdminLayout from "./pages/layouts/AdminLayout";
 import ProductAdd from "./pages/ProductAdd";
 import ProductEdit from "./pages/productEdit";
 import PrivateRouter from "./component/PrivateRouter";
+import Signin from "./pages/Signin";
+import Signup from "./pages/Singup";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -69,6 +71,12 @@ function App() {
           <li>
             <NavLink to="/about">About</NavLink>
           </li>
+          <li>
+            <NavLink to="/signin">Signin</NavLink>
+          </li>
+          <li>
+            <NavLink to="/signup">Signup</NavLink>
+          </li>
         </ul>
       </header>
       <main>
@@ -77,6 +85,8 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="product" element={<h1>Hiển thị sản phẩm</h1>} />
             <Route path="about" element={<h1>About Page</h1>} />
+            <Route path="signin" element={<Signin />} />
+            <Route path="signup" element={<Signup />} />
           </Route>
 
           <Route path="admin" element={<AdminLayout />}>
