@@ -18,7 +18,7 @@ const ProductAdd = (props: ProductAddProps) => {
   const naviate = useNavigate();
   const onSubmit: SubmitHandler<TypeInputs> = (data) => {
     props.onAdd(data);
-    naviate("/admin/products");
+    // naviate("/admin/products");
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

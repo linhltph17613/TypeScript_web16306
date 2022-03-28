@@ -12,7 +12,7 @@ export const remove = (id: number) => {
 };
 
 export const read = (id: string | undefined) => {
-  const url = `/products/${id}`;
+  const url = `products/${id}`;
   return instance.get(url);
 };
 

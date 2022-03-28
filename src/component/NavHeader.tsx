@@ -6,7 +6,7 @@ const NavHeader = (props: Props) => {
   return (
     <div className="menu top-0">
       <ul className="flex text-sm">
-        <li>
+        <li className="hover:text-[#b97c5e]">
           <a
             className="block py-4 px-4  font-medium hover:text-[#b97c5e];"
             href="/"

@@ -218,7 +218,9 @@ const HomePage = (props: Props) => {
           Mei invenire periculis ei, offendit mediocrem ne sea, eos suas elitr
           everti ea.
         </p>
-        <Product />
+        <div className="grid grid-cols-4 max-w-6xl mx-auto gap-5">
+          <Product />
+        </div>
       </div>
 
       <footer className="bg-[#F3E9DD] py-32 mt-32 pl-32">

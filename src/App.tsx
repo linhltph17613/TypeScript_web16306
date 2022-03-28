@@ -14,6 +14,8 @@ import HomePage from "./pages/Home";
 import AdminLayout from "./pages/layouts/AdminLayout";
 import ProductAdd from "./pages/ProductAdd";
 import PrivateRouter from "./component/PrivateRouter";
+import ProductPage from "./pages/Product";
+import AboutPage from "./pages/About";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -68,8 +70,8 @@ function App() {
         <Routes>
           <Route path="/" element={<WebsiteLayout />}>
             <Route index element={<HomePage />} />
-            <Route path="about" element={<h1>About Page</h1>} />
-            <Route path="product" element={<h1>Hiển thị sản phẩm</h1>} />
+            <Route path="about" element={<AboutPage />} />
+            <Route path="product" element={<ProductPage />} />
           </Route>
 
           <Route path="admin" element={<AdminLayout />}>
