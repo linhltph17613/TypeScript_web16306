@@ -4,7 +4,7 @@ import NavHeader from "../component/NavHeader";
 
 type Props = {};
 
-const AboutPage = (props: Props) => {
+const Contact = (props: Props) => {
   return (
     <div>
       <header
@@ -35,7 +35,9 @@ const AboutPage = (props: Props) => {
         </nav>
 
         <div className="w-2/3 mx-auto pt-20 pl-12 ">
-          <h3 className=" leading-tight font-serif text-7xl  py-5">About Us</h3>
+          <h3 className=" leading-tight font-serif text-7xl  py-5">
+            Contact Us
+          </h3>
           <p className="text-[#b97c5e] font-medium">
             Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.
           </p>
@@ -46,4 +48,4 @@ const AboutPage = (props: Props) => {
   );
 };
 
-export default AboutPage;
+export default Contact;

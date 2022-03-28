@@ -10,7 +10,7 @@ type ProductProps = {
 // const Product = ({ data: { id, name } }: ProductProps) => {
 const Product = (props: ProductProps) => {
   return (
-    <div className="">
+    <div className="grid grid-cols-4 max-w-6xl mx-auto gap-5">
       <div className="relative  pt-10 overlay">
         <div className="relative  product-item  text-center">
           <div className="info-item ">

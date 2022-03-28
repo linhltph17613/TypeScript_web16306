@@ -25,7 +25,7 @@ const NavHeader = (props: Props) => {
         <li>
           <a
             className="block py-4 px-4  font-medium hover:text-[#B97C5E];"
-            href="/product"
+            href="/products"
           >
             SHOP
           </a>
@@ -33,7 +33,7 @@ const NavHeader = (props: Props) => {
         <li>
           <a
             className="block py-4 px-3  font-medium hover:text-[#B97C5E];"
-            href="contact"
+            href="/contact"
           >
             CONTACT
           </a>
@@ -41,7 +41,7 @@ const NavHeader = (props: Props) => {
         <li>
           <a
             className="block py-4 px-3  font-medium hover:text-[#B97C5E];"
-            href=""
+            href="/login"
           >
             SIGNIN
           </a>
@@ -49,7 +49,7 @@ const NavHeader = (props: Props) => {
         <li>
           <a
             className="block py-4 px-3  font-medium hover:text-[#B97C5E];"
-            href=""
+            href="/register"
           >
             SIGNUP
           </a>
