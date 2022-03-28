@@ -53,23 +53,23 @@ function App() {
 
       <header>
         <ul>
-          <li>
+          {/* <li>
             <NavLink to="/">Home Page</NavLink>
-          </li>
-          <li>
+          </li> */}
+          {/* <li>
             <NavLink to="/product">Product Page</NavLink>
           </li>
           <li>
             <NavLink to="/about">About</NavLink>
-          </li>
+          </li> */}
         </ul>
       </header>
       <main>
         <Routes>
           <Route path="/" element={<WebsiteLayout />}>
             <Route index element={<HomePage />} />
-            <Route path="product" element={<h1>Hiển thị sản phẩm</h1>} />
             <Route path="about" element={<h1>About Page</h1>} />
+            <Route path="product" element={<h1>Hiển thị sản phẩm</h1>} />
           </Route>
 
           <Route path="admin" element={<AdminLayout />}>

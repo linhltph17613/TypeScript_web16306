@@ -6,7 +6,6 @@ type Props = {};
 const WebsiteLayout = (props: Props) => {
   return (
     <div>
-      WebsiteLayout
       <Outlet />
     </div>
   );
