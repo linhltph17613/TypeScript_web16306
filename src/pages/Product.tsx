@@ -68,23 +68,24 @@ const ProductPage = (props: Props) => {
         </div>
 
           <div className="flex gap-4  max-w-6xl mx-auto mb-9">
-            <div className=" py-9 w-2/3 gap-4 grid grid-cols-3">
+            {/* <section className=""> */}
+                <div className=" py-9 w-2/3 gap-4 grid grid-cols-3">
                  <div className="relative  pt-10 overlay">
-        <div className="relative  product-item  text-center">
-          <div className="info-item ">
-            <img
-              src="https://i.imgur.com/eseUXCl.jpg"
-              className="w-full h-full"
-              alt=""
-            />
-          </div>
+                    <div className="relative  product-item  text-center">
+                      <div className="info-item ">
+                        <img
+                          src="https://i.imgur.com/eseUXCl.jpg"
+                          className="w-full h-full"
+                          alt=""
+                        />
+                      </div>
 
-          <div className="absolute top-1/3 w-full ">
-            <a className=" text-over" href="">
-              <button className="w-full h-12 px-6 text-indigo-100  transition-colors duration-150 bg-[#b97c5e] hover:bg-[#b96c4e] rounded-lg focus:shadow-outline ">
-                Add to cart
-              </button>
-            </a>
+              <div className="absolute top-1/3 w-full ">
+                <a className=" text-over" href="">
+                  <button className="w-full h-12 px-6 text-indigo-100  transition-colors duration-150 bg-[#b97c5e] hover:bg-[#b96c4e] rounded-lg focus:shadow-outline ">
+                    Add to cart
+                  </button>
+                </a>
           </div>
           <div className="">
             <h2 className="text-2xl font-serif pb-2  pt-3">Coloful Mug</h2>
@@ -207,6 +208,8 @@ const ProductPage = (props: Props) => {
         </div>
                  </div>
             </div>
+           
+          {/* </section> */}
             <div className="bg-gray-100 pl-5 left-0  ml-4 py-9 w-1/3">
               <div className="">
                 <h1 className="font-serif text-2xl">Filter by price</h1>
@@ -258,8 +261,18 @@ const ProductPage = (props: Props) => {
             </div>
           </div>
 
-      
-        </div>
+
+ <nav aria-label="Page navigation " className="max-w-2xl py-5 ml-[330px]">
+                  <ul className="inline-flex  ">
+                    <li><button className="h-10 px-3 text-indigo-600 transition-colors duration-150 bg-white rounded-l-lg focus:shadow-outline hover:bg-indigo-100">Prev</button></li>
+                    <li><button className="h-10 px-3 text-white transition-colors duration-150 bg-indigo-600 focus:shadow-outline">1</button></li>
+                    <li><button className="h-10 px-3 text-indigo-600 transition-colors duration-150 bg-white focus:shadow-outline hover:bg-indigo-100">2</button></li>
+                    <li><button className="h-10 px-3 text-indigo-600 transition-colors duration-150 bg-white focus:shadow-outline hover:bg-indigo-100">3</button></li>
+                    <li><button className="h-10 px-3 text-indigo-600 transition-colors duration-150 bg-white rounded-r-lg focus:shadow-outline hover:bg-indigo-100">Next</button></li>
+                  </ul>
+              </nav>
+          
+</div>
 
 
     
