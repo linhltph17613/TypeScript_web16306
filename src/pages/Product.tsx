@@ -7,6 +7,7 @@ type Props = {};
 const ProductPage = (props: Props) => {
   return (
     <div className="">
+      
       <header
         style={{ backgroundImage: "url('https://i.imgur.com/35J0KJ3.jpg')" }}
         className="bg-local hover:bg-fixed pt-6 pb-32  bg-cover bg-center bg-no-repeat  "

@@ -9,10 +9,54 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,448;1,400&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
+  <div class="">
+    <div class="grid grid-cols-2 max-w-6xl mx-auto">
+      <div class="">
+        <img class="w-[550px] h-[676px]" src="https://i.imgur.com/DfhMgRQ.jpg" alt="">
+      </div>
+      <div class="">
+        <h1 class="font-serif text-5xl pt-10">Ceramic Plate</h1>
+        <p class="font-medium text-3xl text-[#B97C5E] py-3">$302.00</p>
+        <p class="text-gray-500 pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+          incididunt ut labore et
+          dolore magna
+          aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+        <form action="">
+          <Space class="">
+            <input type="number" class="border w-25 h-[38px] pl-3 outline-0 " min="1" placeholder="1" name="" id="">
+          </Space>
+          <button
+            class="inline-flex items-center h-10 px-5 text-white transition-colors duration-150 bg-[#B97C5E] rounded-lg focus:shadow-outline hover:bg-[#b96c4e]">
+            <span>Add to cart</span>
+            <svg class="w-4 h-4 ml-3 fill-current" viewBox="0 0 20 20">
+              <path
+                d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                clip-rule="evenodd" fill-rule="evenodd"></path>
+            </svg>
+          </button>
+        </form>
 
+        <div class="py-3 leading-7" style="font-family: 'Playfair Display', serif ">
+          <b>SKU:</b><span>001</span><br />
+          <b>CATEGORIES:</b><span>Clay, Design, New, Plaster,
+            Vision</span><br />
+          <b>TAGS:</b><span>Artist, Brick, Ceramics, Oval, Tactile,
+            Wood</span><br />
+
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
   <div id="root"></div>
 
   <script type="module" src="/src/main.tsx"></script>

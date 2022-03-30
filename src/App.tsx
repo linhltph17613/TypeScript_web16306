@@ -19,6 +19,7 @@ import AboutPage from "./pages/About";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import Contact from "./pages/Contact";
+import DetailProduct from "./pages/DetailProduct";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -74,7 +75,9 @@ function App() {
           <Route path="/" element={<WebsiteLayout />}>
             <Route index element={<HomePage />} />
             <Route path="about" element={<AboutPage />} />
-            <Route path="products" element={<ProductPage />} />
+            <Route path="products" element={<ProductPage />}>
+              <Route path="detail" element={<DetailProduct />} />
+            </Route>
             <Route path="contact" element={<Contact />} />
             <Route path="login" element={<Signin />} />
             <Route path="register" element={<Signup />} />

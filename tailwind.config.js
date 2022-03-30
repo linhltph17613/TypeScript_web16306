@@ -1,6 +1,7 @@
 module.exports = {
   content: ["index.html", "./src/**/*.{js,jsx,ts,tsx}",],
   theme: {
+
     extend: {
       backgroundImage: them => ({
         'header-img': "url('https://i.imgur.com/5G0J8T4.jpg')",

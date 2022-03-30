@@ -153,7 +153,7 @@ const HomePage = (props: Props) => {
             </div>
             <div className="">
               <div className="grid grid-cols-2 gap-4 ">
-                <div className="overflow-hidden object-cover">
+                <div className="object-cover overflow-hidden">
                   <img
                     className="hover:scale-[1.1]"
                     src="https://i.imgur.com/GH1QyFP.jpg"
@@ -182,7 +182,7 @@ const HomePage = (props: Props) => {
                   />
                 </div>
               </div>
-              <div className="pt-4 overflow-hidden object-cover">
+              <div className="pt-4 object-cover overflow-hidden">
                 <img
                   className="hover:scale-[1.1]"
                   src="https://i.imgur.com/OdL5yFg.jpg"
