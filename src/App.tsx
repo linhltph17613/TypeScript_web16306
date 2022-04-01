@@ -75,8 +75,9 @@ function App() {
           <Route path="/" element={<WebsiteLayout />}>
             <Route index element={<HomePage />} />
             <Route path="about" element={<AboutPage />} />
-            <Route path="products" element={<ProductPage />}>
-              <Route path="detail" element={<DetailProduct />} />
+            <Route path="products">
+              <Route index element={<ProductPage />}></Route>
+              <Route path=":id" element={<DetailProduct />} />
             </Route>
             <Route path="contact" element={<Contact />} />
             <Route path="login" element={<Signin />} />

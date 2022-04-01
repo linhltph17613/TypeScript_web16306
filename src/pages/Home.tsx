@@ -203,7 +203,7 @@ const HomePage = (props: Props) => {
             type="text"
             name=""
             placeholder="E-mail Adress"
-            className="pr-32 pl-3 text-white py-3 bg-transparent border border-inherit outline-0"
+            className="pr-32 pl-3 text-white py-3 bg-transparent border border-inherit outline-0 text-white"
           />
           <button className="bg-white text-sm text-black px-10 py-[18px] border bg-white ">
             SUBSCRIBE

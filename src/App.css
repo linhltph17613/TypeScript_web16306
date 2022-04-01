@@ -36,6 +36,9 @@
     transform: rotate(360deg);
   }
 }
+.tagss {
+  font-family: "Playfair Display", serif;
+}
 
 button {
   font-size: calc(10px + 2vmin);

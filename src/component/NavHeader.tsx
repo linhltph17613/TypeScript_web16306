@@ -8,7 +8,7 @@ const NavHeader = (props: Props) => {
       <ul className="flex text-sm">
         <li className="hover:text-[#b97c5e]">
           <a
-            className="block py-4 px-4  font-medium hover:text-[#b97c5e];"
+            className="block py-4 px-4 text-black font-medium hover:text-[#b97c5e];"
             href="/"
           >
             HOME
@@ -16,7 +16,7 @@ const NavHeader = (props: Props) => {
         </li>
         <li>
           <a
-            className="block py-4 px-4  font-medium hover:text-[#B97C5E];"
+            className="block py-4 px-4 text-black font-medium hover:text-[#B97C5E];"
             href="/about"
           >
             ABOUT
@@ -24,7 +24,7 @@ const NavHeader = (props: Props) => {
         </li>
         <li>
           <a
-            className="block py-4 px-4  font-medium hover:text-[#B97C5E];"
+            className="block py-4 px-4 text-black font-medium hover:text-[#B97C5E];"
             href="/products"
           >
             SHOP
@@ -32,7 +32,7 @@ const NavHeader = (props: Props) => {
         </li>
         <li>
           <a
-            className="block py-4 px-3  font-medium hover:text-[#B97C5E];"
+            className="block py-4 px-3 text-black font-medium hover:text-[#B97C5E];"
             href="/contact"
           >
             CONTACT
@@ -40,7 +40,7 @@ const NavHeader = (props: Props) => {
         </li>
         <li>
           <a
-            className="block py-4 px-3  font-medium hover:text-[#B97C5E];"
+            className="block py-4 px-3 text-black font-medium hover:text-[#B97C5E];"
             href="/login"
           >
             SIGNIN
@@ -48,7 +48,7 @@ const NavHeader = (props: Props) => {
         </li>
         <li>
           <a
-            className="block py-4 px-3  font-medium hover:text-[#B97C5E];"
+            className="block py-4 px-3 text-black font-medium hover:text-[#B97C5E];"
             href="/register"
           >
             SIGNUP

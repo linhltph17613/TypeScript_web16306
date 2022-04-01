@@ -1,10 +1,15 @@
-import React from "react";
+import { Item } from "rc-menu";
+import React, { useState } from "react";
 import Footer from "../component/Footer";
 import NavHeader from "../component/NavHeader";
+import Product from "../component/Product";
 
 type Props = {};
-
 const DetailProduct = (props: Props) => {
+  const [status, setStatus] = useState(false);
+  const [product, setProduct] = useState([
+    { id: 1, name: "abc", desc: "ádfghjkjhgfdsaÁDFGHJKJHGFDSDFGHJ" },
+  ]);
   return (
     <div>
       <header
@@ -43,6 +48,139 @@ const DetailProduct = (props: Props) => {
           </p>
         </div>
       </header>
+      <div className="">
+        <div className="grid grid-cols-2 max-w-6xl mx-auto">
+          <div className="">
+            <img
+              className="w-[550px] h-[676px]"
+              src="https://i.imgur.com/DfhMgRQ.jpg"
+              alt=""
+            />
+          </div>
+          <div className="">
+            <h1 className="font-serif text-5xl pt-10">Ceramic Plate</h1>
+            <p className="font-medium text-3xl text-[#B97C5E] py-3">$302.00</p>
+            <p className="text-gray-500 pb-3">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip.
+            </p>
+            <form action="">
+              <input
+                type="number"
+                className="border w-25 h-[38px] pl-3 outline-0 mr-2"
+                min="1"
+                placeholder="1"
+                name=""
+                id=""
+              />
+              <button className="inline-flex items-center h-10 px-5 text-white transition-colors duration-150 bg-[#B97C5E] rounded-lg focus:shadow-outline hover:bg-[#b96c4e]">
+                <span>Add to cart</span>
+                <svg className="w-4 h-4 ml-3 fill-current" viewBox="0 0 20 20">
+                  <path
+                    d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                    clip-rule="evenodd"
+                    fill-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+            </form>
+
+            <div className="py-3 leading-7 tagss">
+              <b>SKU:</b>
+              <span>001</span>
+              <br />
+              <b>CATEGORIES:</b>
+              <span>Clay, Design, New, Plaster, Vision</span>
+              <br />
+              <b>TAGS:</b>
+              <span>Artist, Brick, Ceramics, Oval, Tactile, Wood</span>
+              <br />
+            </div>
+
+            <div className="">
+              <button
+                className="h-10 outline-0  text-[#B97C5E] font-serif transition-colors duration-150 border border-indigo-500 rounded-lg focus:shadow-outline text-xl  hover:bg-[#B97C5E] hover:text-white w-[570px]"
+                onClick={() => setStatus(!status)}
+              >
+                Description
+              </button>
+              {status
+                ? product.map((item, index) => (
+                    <div className="px-2 py-3" key={index}>
+                      {item.name} <p>Mô tả: {item.desc}</p>
+                    </div>
+                  ))
+                : ""}
+            </div>
+            <div className="my-2">
+              <button
+                className="h-10 outline-0  text-[#B97C5E] font-serif transition-colors duration-150 border border-indigo-500 rounded-lg focus:shadow-outline text-xl  hover:bg-[#B97C5E] hover:text-white w-[570px]"
+                onClick={() => setStatus(!status)}
+              >
+                Aditional Infomation
+              </button>
+              {status
+                ? product.map((item, index) => (
+                    <div className="px-2 py-3" key={index}>
+                      {item.name} <p>Mô tả: {item.desc}</p>
+                    </div>
+                  ))
+                : ""}
+            </div>
+            <div className="">
+              <button
+                className="h-10 outline-0 text-[#B97C5E] font-serif transition-colors duration-150 border border-indigo-500 rounded-lg focus:shadow-outline text-xl  hover:bg-[#B97C5E] hover:text-white w-[570px]"
+                onClick={() => setStatus(!status)}
+              >
+                Review ( 0 )
+              </button>
+              {status
+                ? product.map((item, index) => (
+                    <div className="px-2 py-3" key={index}>
+                      <h3 className="tagss">Reviews</h3>{" "}
+                      <div className="">
+                        {/* <Comment
+                          actions={actions}
+                          author={<a>Han Solo</a>}
+                          avatar={
+                            <Avatar
+                              src="https://joeschmoe.io/api/v1/random"
+                              alt="Han Solo"
+                            />
+                          }
+                          content={
+                            <p>
+                              We supply a series of design principles, practical
+                              patterns and high quality design resources (Sketch
+                              and Axure), to help people create their product
+                              prototypes beautifully and efficiently.
+                            </p>
+                          }
+                          datetime={
+                            <Tooltip
+                              title={moment().format("YYYY-MM-DD HH:mm:ss")}
+                            >
+                              <span>{moment().fromNow()}</span>
+                            </Tooltip>
+                          }
+                        /> */}
+                      </div>
+                    </div>
+                  ))
+                : ""}
+            </div>
+          </div>
+        </div>
+        <div className="pt-28">
+          <h1 className="font-serif text-4xl pt-10 max-w-6xl mx-auto">
+            Ceramic Products
+          </h1>
+
+          <Product />
+        </div>
+      </div>
       <Footer />
     </div>
   );

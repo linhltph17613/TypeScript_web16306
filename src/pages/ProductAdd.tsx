@@ -7,7 +7,12 @@ type ProductAddProps = {
 };
 type TypeInputs = {
   name: string;
+  image: string;
   price: number;
+  desc: string;
+  weight: number;
+  demension: string;
+  cate: string;
 };
 const ProductAdd = (props: ProductAddProps) => {
   const {
@@ -21,11 +26,71 @@ const ProductAdd = (props: ProductAddProps) => {
     // naviate("/admin/products");
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input type="text" placeholder="Tên sản phẩm " {...register("name")} />
-      <input type="number" placeholder="Giá sản phẩm " {...register("price")} />
-      <button>Add</button>
-    </form>
+    <div className="">
+      <form className="mx-auto max-w-3xl">
+        <div className="mb-3">
+          <label className="form-label">Email address</label>
+          <input
+            type="email"
+            className="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Email address</label>
+          <input
+            type="email"
+            className="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Email address</label>
+          <input
+            type="email"
+            className="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="border bg-blue-500 px-5 py-2 font-medium"
+        >
+          Submit
+        </button>
+      </form>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input type="text" placeholder="Name Product " {...register("name")} />
+        <input
+          type="number"
+          placeholder="Price Product  "
+          {...register("price")}
+        />
+        <input type="text" placeholder="Image Product" {...register("image")} />
+        <input
+          type="desc"
+          placeholder="Description Product"
+          {...register("desc")}
+        />
+        <input
+          type="number"
+          placeholder="Weight Product"
+          {...register("weight")}
+        />
+        <input
+          type="text"
+          placeholder="Demensions "
+          {...register("demension")}
+        />
+        <input type="text" placeholder="Category " {...register("cate")} />
+
+        <button>Add</button>
+      </form>
+    </div>
   );
 };
 
