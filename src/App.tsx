@@ -20,6 +20,7 @@ import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import Contact from "./pages/Contact";
 import DetailProduct from "./pages/DetailProduct";
+import CartPage from "./pages/cart";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -82,6 +83,7 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="login" element={<Signin />} />
             <Route path="register" element={<Signup />} />
+            <Route path="cart" element={<CartPage />} />
           </Route>
 
           <Route path="admin" element={<AdminLayout />}>
