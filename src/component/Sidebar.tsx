@@ -23,7 +23,7 @@ const Sidebar = (props: Props) => {
             <NavLink
               className="nav-link active hover:text-[#b97c5e] text-lg font-medium"
               aria-current="page"
-              to="/admin/products"
+              to="/admin/user"
             >
               Users
             </NavLink>
@@ -41,7 +41,7 @@ const Sidebar = (props: Props) => {
             <NavLink
               className="nav-link active hover:text-[#b97c5e] text-lg font-medium"
               aria-current="page"
-              to="/admin/products"
+              to="/admin/category"
             >
               Categories
             </NavLink>

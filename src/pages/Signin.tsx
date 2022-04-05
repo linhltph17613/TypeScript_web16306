@@ -1,28 +1,33 @@
-import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { registers } from "../api/user";
+import { signup, signin } from "../api/auth";
+import { authenticated } from "../utils/localStorage";
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
 import Footer from "../component/Footer";
 import NavHeader from "../component/NavHeader";
-type SigninProps = {
-  name: string;
-  onSign: (user: TypeFormSign) => void;
-};
-type TypeFormSign = {
-  name: string;
+
+type TypeInputs = {
   email: string;
-  password: number;
+  password: string;
 };
-const Signin = (props: SigninProps) => {
+
+const Signin = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TypeFormSign>();
+  } = useForm<TypeInputs>();
   const navigate = useNavigate();
-  const onSign: SubmitHandler<TypeFormSign> = (data) => {
-    registers(data);
-    navigate("/signin");
+
+  const onSubmit: SubmitHandler<TypeInputs> = async (data) => {
+    const { data: user } = await signin(data);
+    console.log(user);
+    // localstorage
+    authenticated(user, () => {
+      toastr.success("Đăng nhập thành công");
+      navigate("/");
+    });
   };
   return (
     <div className="">
@@ -54,7 +59,7 @@ const Signin = (props: SigninProps) => {
         </nav>
 
         <div className="w-2/3 mx-auto pt-20 pl-12 ">
-          <h3 className=" leading-tight font-serif text-7xl  py-5">Sign in</h3>
+          <h3 className=" leading-tight font-serif text-7xl  py-5">Sign up</h3>
           <p className="text-[#b97c5e] font-medium">
             Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.
           </p>
@@ -65,7 +70,7 @@ const Signin = (props: SigninProps) => {
           width: "500px",
           margin: "auto",
         }}
-        onSubmit={handleSubmit(onSign)}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <div className="mb-3 mt-[50px]">
           <label htmlFor="exampleInputEmail1" className="form-label">
@@ -102,7 +107,7 @@ const Signin = (props: SigninProps) => {
             </label>
             <br />
             <label className="form-check-label" htmlFor="exampleCheck1">
-              You don't have an account yet?{" "}
+              Do you already have an account{" "}
               <a href="/register" className="text-[#b97c5e]">
                 Signup
               </a>
@@ -120,4 +125,5 @@ const Signin = (props: SigninProps) => {
     </div>
   );
 };
+
 export default Signin;

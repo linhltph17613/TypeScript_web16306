@@ -17,8 +17,12 @@ const ProductManager = (props: ProductManagerProps) => {
           <tr>
             <th scope="col">#</th>
             <th scope="col">Name </th>
-            <th scope="col">Price</th>
+            <th scope="col">Image</th>
             <th scope="col">Desc</th>
+            <th scope="col">Price</th>
+            <th scope="col">weight</th>
+            <th scope="col">demensions</th>
+            <th scope="col">category</th>
 
             <th scope="col"></th>
           </tr>
@@ -29,7 +33,15 @@ const ProductManager = (props: ProductManagerProps) => {
               <tr key={index}>
                 <th scope="row">{index++}</th>
                 <td>{item.name}</td>
+                <td>
+                  <img className="w-[70px]" src={item.image} />
+                </td>
                 <td>{item.price}</td>
+                <td>{item.desc}</td>
+                <td>{item.weight}</td>
+                <td>{item.demensions}</td>
+                <td>{item.category}</td>
+
                 {/* <td>{item.desc}</td> */}
                 <td></td>
 
@@ -37,7 +49,7 @@ const ProductManager = (props: ProductManagerProps) => {
                   <button onClick={() => props.onRemove(item._id)}>
                     Remove
                   </button>
-                  <a className="px-2" href="">
+                  <a className="px-2" href={`products/edit/${item._id}`}>
                     Edit
                   </a>
                 </td>

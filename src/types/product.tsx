@@ -1,9 +1,10 @@
 export interface IProduct {
-  id?: number;
+  _id?: number;
   name: string;
-  img: string;
+  image: string;
   desc: string;
   weight: number;
-  demension: string;
+  demensions: string;
   price: number;
+  category: string;
 }

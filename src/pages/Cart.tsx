@@ -51,7 +51,7 @@ const CartPage = (props: Props) => {
             <td>$103.00</td>
           </tr>
           <tr>
-            <td className="border px-6 py-4">X</td>
+            <td className="border px-6 text-center py-4">X</td>
             <td className="px-6 py-4 whitespace-nowrap">
               <img width="80" src="${item.img}" />
             </td>

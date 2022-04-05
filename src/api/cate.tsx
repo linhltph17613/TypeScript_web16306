@@ -1,22 +1,22 @@
-import { IUser } from "../types/User";
+import { ICate } from "../types/cate";
 import instance from "./instance";
 
 export const list = () => {
-  const url = "/user";
+  const url = "/category";
   return instance.get(url);
 };
 
 export const remove = (id: number) => {
-  const url = `/user/${id}`;
+  const url = `/category/${id}`;
   return instance.delete(url);
 };
 
 export const read = (id: string | undefined) => {
-  const url = `/user/${id}`;
+  const url = `/category/${id}`;
   return instance.get(url);
 };
 
-export const add = (user: IUser) => {
-  const url = "/user";
-  return instance.post(url, user);
+export const add = (cate: ICate) => {
+  const url = "/category";
+  return instance.post(url, cate);
 };

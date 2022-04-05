@@ -1,11 +1,13 @@
+import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { read } from "../api/product";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
 
-type ProductAddProps = {
+type ProductEditProps = {
   name: string;
-  onAdd: (product: TypeInputs) => void;
+  onEdit: (product: TypeInputs) => void;
 };
 type TypeInputs = {
   name: string;
@@ -13,28 +15,35 @@ type TypeInputs = {
   price: number;
   desc: string;
   weight: number;
-  demension: string;
-  // cate: string;
+  demensions: string;
+  cate: string;
 };
-const ProductAdd = (props: ProductAddProps) => {
+const ProductEdit = (props: ProductEditProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<TypeInputs>();
+  const [data, setData] = useState([]);
   const naviate = useNavigate();
-  const onSubmit: SubmitHandler<TypeInputs> = (data) => {
-    const newData = {
-      ...data,
-      demensions: data.demension,
-      price: +data.price,
-      weight: +data.weight,
-      category: "6232e7587f637b65ca5abd4d",
+  const { id } = useParams();
+  useEffect(() => {
+    const productEdit = async () => {
+      const { data } = await read(id);
+      setData(data);
+      reset(data);
     };
-    props.onAdd(newData);
-    toastr.success("Thêm sản phẩm thành công");
-
-    naviate("/admin/products");
+    productEdit();
+  }, [id]);
+  const onSubmit: SubmitHandler<TypeInputs> = (data) => {
+    try {
+      props.onEdit(id, data);
+      toastr.success("Sửa sản phẩm thành công");
+      naviate("/admin/products");
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="">
@@ -93,32 +102,22 @@ const ProductAdd = (props: ProductAddProps) => {
           <label className="form-label">Demensions</label>
           <input
             type="text"
-            {...register("demension")}
+            {...register("demensions")}
             className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
           />
         </div>
-        {/* <div className="mb-3">
-          <label className="form-label">Category</label>
-          <input
-            type="text"
-            {...register("cate")}
-            className="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-          />
-        </div> */}
 
         <button
           type="submit"
           className="border bg-[#b97c5e] px-5 py-2 font-medium"
         >
-          Add
+          Edit
         </button>
       </form>
     </div>
   );
 };
 
-export default ProductAdd;
+export default ProductEdit;

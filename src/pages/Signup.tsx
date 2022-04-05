@@ -1,9 +1,12 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { registers } from "../api/user";
+import { signup } from "../api/auth";
 import Footer from "../component/Footer";
 import NavHeader from "../component/NavHeader";
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
+
 type SigninProps = {
   name: string;
   onSign: (user: TypeFormSign) => void;
@@ -11,7 +14,7 @@ type SigninProps = {
 type TypeFormSign = {
   name: string;
   email: string;
-  password: number;
+  password: string;
 };
 const Signup = (props: SigninProps) => {
   const {
@@ -21,7 +24,9 @@ const Signup = (props: SigninProps) => {
   } = useForm<TypeFormSign>();
   const navigate = useNavigate();
   const onSign: SubmitHandler<TypeFormSign> = (data) => {
-    registers(data);
+    signup(data);
+    toastr.success("Đăng kí thành công");
+
     navigate("/login");
   };
   return (
