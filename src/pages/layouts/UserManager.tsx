@@ -16,7 +16,7 @@ const UserManager = (props: UserProps) => {
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
-            <th scope="col">Password</th>
+            {/* <th scope="col">Password</th> */}
 
             <th scope="col"></th>
           </tr>
@@ -25,10 +25,10 @@ const UserManager = (props: UserProps) => {
           {props.user.map((item, index) => {
             return (
               <tr key={index}>
-                <th scope="row">{index++}</th>
+                <th scope="row">{index + 1}</th>
                 <td>{item.name}</td>
                 <td>{item.email}</td>
-                <td>{item.password}</td>
+                {/* <td>{item.password}</td> */}
 
                 {/* <td>{item.desc}</td> */}
 

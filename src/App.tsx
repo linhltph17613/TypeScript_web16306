@@ -43,18 +43,14 @@ function App() {
       setProducts(data);
     };
     getProducts();
-  }, []);
 
-  useEffect(() => {
     const getUser = async () => {
       const { data } = await listUser();
       console.log(data);
       setUser(data);
     };
     getUser();
-  }, []);
 
-  useEffect(() => {
     const getCate = async () => {
       const { data } = await listCate();
       console.log(data);
@@ -63,24 +59,22 @@ function App() {
     getCate();
   }, []);
 
-  const removeItem = (id: number) => {
+  const removeItem = (id: number | string) => {
     //call api
     remove(id);
-
     //rerender
     setProducts(products.filter((item) => item._id !== id));
   };
-  const removeCate = (id: number) => {
+  const removeCate = (id: number | string) => {
     //call api
     remove(id);
-
     //rerender
     setCategory(category.filter((cate) => cate._id !== id));
   };
+
   const removeUser = (id: number) => {
     //call api
     remove(id);
-
     //rerender
     setUser(user.filter((item) => item._id !== id));
   };
@@ -91,7 +85,10 @@ function App() {
   };
   const HandleronEdit = async (id, product: IProduct) => {
     const { data } = await update(id, product);
-    setProducts([...products, data]);
+    // setProducts([...products, data]);
+    setProducts(
+      products.map((item) => (item._id === data._id ? product : item))
+    );
   };
   return (
     <div className="App">
@@ -123,8 +120,14 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="about" element={<AboutPage />} />
             <Route path="products">
-              <Route index element={<ProductPage />}></Route>
-              <Route path=":id" element={<DetailProduct />} />
+              <Route
+                index
+                element={<ProductPage products={products} />}
+              ></Route>
+              <Route
+                path=":id"
+                element={<DetailProduct products={products} />}
+              />
             </Route>
             <Route path="contact" element={<Contact />} />
             <Route path="login" element={<Signin />} />

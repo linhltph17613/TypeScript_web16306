@@ -3,7 +3,7 @@ import type { IProduct } from "../../types/product";
 
 type ProductManagerProps = {
   products: IProduct[];
-  onRemove: (id: number) => void;
+  onRemove: (id: number | string) => void;
 };
 
 const ProductManager = (props: ProductManagerProps) => {
@@ -22,7 +22,7 @@ const ProductManager = (props: ProductManagerProps) => {
             <th scope="col">Price</th>
             <th scope="col">weight</th>
             <th scope="col">demensions</th>
-            <th scope="col">category</th>
+            {/* <th scope="col">category</th> */}
 
             <th scope="col"></th>
           </tr>
@@ -31,7 +31,7 @@ const ProductManager = (props: ProductManagerProps) => {
           {props.products.map((item, index) => {
             return (
               <tr key={index}>
-                <th scope="row">{index++}</th>
+                <th scope="row">{index + 1}</th>
                 <td>{item.name}</td>
                 <td>
                   <img className="w-[70px]" src={item.image} />
@@ -40,7 +40,7 @@ const ProductManager = (props: ProductManagerProps) => {
                 <td>{item.desc}</td>
                 <td>{item.weight}</td>
                 <td>{item.demensions}</td>
-                <td>{item.category}</td>
+                {/* <td>{item.category}</td> */}
 
                 {/* <td>{item.desc}</td> */}
                 <td></td>

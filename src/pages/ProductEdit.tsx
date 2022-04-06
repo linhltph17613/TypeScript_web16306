@@ -16,7 +16,7 @@ type TypeInputs = {
   desc: string;
   weight: number;
   demensions: string;
-  cate: string;
+  category: string;
 };
 const ProductEdit = (props: ProductEditProps) => {
   const {
@@ -25,17 +25,19 @@ const ProductEdit = (props: ProductEditProps) => {
     formState: { errors },
     reset,
   } = useForm<TypeInputs>();
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const naviate = useNavigate();
   const { id } = useParams();
+
   useEffect(() => {
     const productEdit = async () => {
       const { data } = await read(id);
-      setData(data);
+      // setData(data);
       reset(data);
     };
     productEdit();
   }, [id]);
+
   const onSubmit: SubmitHandler<TypeInputs> = (data) => {
     try {
       props.onEdit(id, data);

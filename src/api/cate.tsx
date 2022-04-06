@@ -6,7 +6,7 @@ export const list = () => {
   return instance.get(url);
 };
 
-export const remove = (id: number) => {
+export const remove = (id: number | string) => {
   const url = `/category/${id}`;
   return instance.delete(url);
 };

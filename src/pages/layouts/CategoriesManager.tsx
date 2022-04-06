@@ -3,7 +3,7 @@ import type { ICate } from "../../types/cate";
 
 type CategoryProps = {
   category: ICate[];
-  onRemove: (id: number) => void;
+  onRemove: (id: number | string) => void;
 };
 
 const CategoryManager = (props: CategoryProps) => {
@@ -26,10 +26,10 @@ const CategoryManager = (props: CategoryProps) => {
           {props.category.map((cate, index) => {
             return (
               <tr key={index}>
-                <th scope="row">{index++}</th>
+                {console.log(cate._id)}
+                <th scope="row">{index + 1}</th>
                 <td>{cate.name}</td>
                 {/* <td>{item.desc}</td> */}
-
                 <td>
                   <button onClick={() => props.onRemove(cate._id)}>
                     Remove

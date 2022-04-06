@@ -1,15 +1,26 @@
 import { Item } from "rc-menu";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { read as readProduct } from "../api/product";
 import Footer from "../component/Footer";
 import NavHeader from "../component/NavHeader";
 import Product from "../component/Product";
+import { ICate } from "../types/cate";
+import { IProduct } from "../types/product";
 
-type Props = {};
-const DetailProduct = (props: Props) => {
-  const [status, setStatus] = useState(false);
-  const [product, setProduct] = useState([
-    { id: 1, name: "abc", desc: "ádfghjkjhgfdsaÁDFGHJKJHGFDSDFGHJ" },
-  ]);
+const DetailProduct = () => {
+  const [proCate, setProCate] = useState<IProduct[]>([]);
+  const { id } = useParams();
+  const [products, setProduct] = useState<IProduct>();
+  useEffect(() => {
+    const getProducts = async () => {
+      const { data } = await readProduct(id);
+      console.log(data);
+      setProduct(data);
+    };
+    getProducts();
+  }, []);
+
   return (
     <div>
       <header
@@ -41,7 +52,7 @@ const DetailProduct = (props: Props) => {
 
         <div className="w-2/3 mx-auto pt-20 pl-12 ">
           <h3 className=" leading-tight font-serif text-7xl  py-5">
-            Mug colorrr
+            {products?.name}
           </h3>
           <p className="text-[#b97c5e] font-medium">
             Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.
@@ -51,21 +62,14 @@ const DetailProduct = (props: Props) => {
       <div className="">
         <div className="grid grid-cols-2 max-w-6xl mx-auto">
           <div className="">
-            <img
-              className="w-[550px] h-[676px]"
-              src="https://i.imgur.com/DfhMgRQ.jpg"
-              alt=""
-            />
+            <img className="w-[550px] h-[676px]" src={products?.image} alt="" />
           </div>
           <div className="">
-            <h1 className="font-serif text-5xl pt-10">Ceramic Plate</h1>
-            <p className="font-medium text-3xl text-[#B97C5E] py-3">$302.00</p>
-            <p className="text-gray-500 pb-3">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip.
+            <h1 className="font-serif text-5xl pt-10">{products?.name}</h1>
+            <p className="font-medium text-3xl text-[#B97C5E] py-3">
+              $ {products?.price}
             </p>
+            <p className="text-gray-500 pb-3">{products?.desc}</p>
             <form action="">
               <input
                 type="number"
@@ -75,7 +79,10 @@ const DetailProduct = (props: Props) => {
                 name=""
                 id=""
               />
-              <button className="inline-flex items-center h-10 px-5 text-white transition-colors duration-150 bg-[#B97C5E] rounded-lg focus:shadow-outline hover:bg-[#b96c4e]">
+              <button
+                id="AddToCart"
+                className="inline-flex items-center h-10 px-5 text-white transition-colors duration-150 bg-[#B97C5E] rounded-lg focus:shadow-outline hover:bg-[#b96c4e]"
+              >
                 <span>Add to cart</span>
                 <svg className="w-4 h-4 ml-3 fill-current" viewBox="0 0 20 20">
                   <path
@@ -107,7 +114,7 @@ const DetailProduct = (props: Props) => {
                 Description
               </button>
               {status
-                ? product.map((item, index) => (
+                ? proCate.map((item, index) => (
                     <div className="px-2 py-3" key={index}>
                       {item.name} <p>Mô tả: {item.desc}</p>
                     </div>
@@ -122,7 +129,7 @@ const DetailProduct = (props: Props) => {
                 Aditional Infomation
               </button>
               {status
-                ? product.map((item, index) => (
+                ? proCate.map((item, index) => (
                     <div className="px-2 py-3" key={index}>
                       {item.name} <p>Mô tả: {item.desc}</p>
                     </div>
@@ -137,35 +144,35 @@ const DetailProduct = (props: Props) => {
                 Review ( 0 )
               </button>
               {status
-                ? product.map((item, index) => (
+                ? proCate.map((item, index) => (
                     <div className="px-2 py-3" key={index}>
                       <h3 className="tagss">Reviews</h3>{" "}
                       <div className="">
                         {/* <Comment
-                          actions={actions}
-                          author={<a>Han Solo</a>}
-                          avatar={
-                            <Avatar
-                              src="https://joeschmoe.io/api/v1/random"
-                              alt="Han Solo"
-                            />
-                          }
-                          content={
-                            <p>
-                              We supply a series of design principles, practical
-                              patterns and high quality design resources (Sketch
-                              and Axure), to help people create their product
-                              prototypes beautifully and efficiently.
-                            </p>
-                          }
-                          datetime={
-                            <Tooltip
-                              title={moment().format("YYYY-MM-DD HH:mm:ss")}
-                            >
-                              <span>{moment().fromNow()}</span>
-                            </Tooltip>
-                          }
-                        /> */}
+                                  actions={actions}
+                                  author={<a>Han Solo</a>}
+                                  avatar={
+                                    <Avatar
+                                      src="https://joeschmoe.io/api/v1/random"
+                                      alt="Han Solo"
+                                    />
+                                  }
+                                  content={
+                                    <p>
+                                      We supply a series of design principles, practical
+                                      patterns and high quality design resources (Sketch
+                                      and Axure), to help people create their product
+                                      prototypes beautifully and efficiently.
+                                    </p>
+                                  }
+                                  datetime={
+                                    <Tooltip
+                                      title={moment().format("YYYY-MM-DD HH:mm:ss")}
+                                    >
+                                      <span>{moment().fromNow()}</span>
+                                    </Tooltip>
+                                  }
+                                /> */}
                       </div>
                     </div>
                   ))

@@ -1,8 +1,21 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
 
 type Props = {};
 
 const NavHeader = (props: Props) => {
+  const navigate = useNavigate();
+  const Logout = () => {
+    localStorage.removeItem("user");
+    navigate("/");
+  };
+  // const logout = document.querySelector("#logout");
+  // logout.addEventListener("click", () => {
+  //   localStorage.removeItem("user");
+  //   toastr.success("Bạn đã đăng xuất thành công!");
+  // });
   return (
     <div className="menu top-0">
       <nav className="menu">
@@ -42,6 +55,14 @@ const NavHeader = (props: Props) => {
           <li>
             <a
               className="block py-4 px-3 text-black font-medium hover:text-[#B97C5E];"
+              href="/admin/dashboard"
+            >
+              ADMIN
+            </a>
+          </li>
+          <li>
+            <a
+              className="block py-4 px-3 text-black font-medium hover:text-[#B97C5E];"
               href="/login"
             >
               <i className="fa-solid fa-user"></i>
@@ -58,19 +79,15 @@ const NavHeader = (props: Props) => {
                 </a>
               </li>
               <li>
-                <a className="text-black-500 font-medium" href="">
+                <div
+                  className="text-black-500 font-medium"
+                  id="logout"
+                  onClick={() => Logout()}
+                >
                   LOG OUT
-                </a>
+                </div>
               </li>
             </ul>
-          </li>
-          <li>
-            <a
-              className="block py-4 px-3 text-black font-medium hover:text-[#B97C5E];"
-              href="/admin/dashboard"
-            >
-              ADMIN
-            </a>
           </li>
         </ul>
       </nav>

@@ -6,8 +6,8 @@ export const list = () => {
   return instance.get(url);
 };
 
-export const remove = (id: number) => {
-  const url = `/product/${id}`;
+export const remove = (id: number | string) => {
+  const url = `/products/${id}`;
   return instance.delete(url);
 };
 
