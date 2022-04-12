@@ -29,12 +29,30 @@ import UserManager from "./pages/layouts/UserManager";
 import { list as listUser } from "./api/user";
 import { list as listCate } from "./api/cate";
 import ProductEdit from "./pages/ProductEdit";
+import Pagination from "./component/Pagination";
 
 function App() {
   const [count, setCount] = useState(0);
   const [products, setProducts] = useState<IProduct[]>([]);
   const [category, setCategory] = useState<ICate[]>([]);
   const [user, setUser] = useState<IUser[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage] = useState(6);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      const { data } = await list();
+      console.log(data);
+      setProducts(data);
+    };
+    getProducts();
+  }, []);
+  //Get curent products
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFistPost = indexOfLastPost - postPerPage;
+  const currentPost = products.slice(indexOfFistPost, indexOfLastPost);
+  //Change Page
+  const paginate = (PageNumber) => setCurrentPage(PageNumber);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -90,6 +108,7 @@ function App() {
       products.map((item) => (item._id === data._id ? product : item))
     );
   };
+
   return (
     <div className="App">
       {/* {product.map((item) => {
@@ -119,11 +138,29 @@ function App() {
           <Route path="/" element={<WebsiteLayout />}>
             <Route index element={<HomePage />} />
             <Route path="about" element={<AboutPage />} />
-            <Route path="products">
+            <Route path="products/:id">
               <Route
                 index
-                element={<ProductPage products={products} />}
+                element={
+                  <ProductPage
+                    products={currentPost}
+                    postPerPage={postPerPage}
+                    totalPosts={products.length}
+                    paginate={paginate}
+                  />
+                }
+                // truyền Prop của mấy cái PAGE vô  com của Product rồi sang bên Com Product gọi lại Com Pagination rồi truyền Prop từ Product vào lại trong Com Pagination mình vừa gọi
               ></Route>
+              {/* <Route
+                path="page"
+                element={
+                  <Pagination
+                    postPerPage={postPerPage}
+                    totalPosts={products.length}
+                    paginate={paginate}
+                  />
+                }
+              ></Route> */}
               <Route
                 path=":id"
                 element={<DetailProduct products={products} />}
@@ -136,9 +173,30 @@ function App() {
             <Route path="cart/checkout" element={<Checkout />} />
           </Route>
 
-          <Route path="admin" element={<AdminLayout />}>
-            <Route index element={<Navigate to="dashboard" />} />
-            <Route path="dashboard" element={<Dashboard />} />
+          <Route
+            path="admin"
+            element={
+              <PrivateRouter>
+                <AdminLayout />
+              </PrivateRouter>
+            }
+          >
+            <Route
+              index
+              element={
+                <PrivateRouter>
+                  <Navigate to="dashboard" />
+                </PrivateRouter>
+              }
+            />
+            <Route
+              path="dashboard"
+              element={
+                <PrivateRouter>
+                  <Dashboard />
+                </PrivateRouter>
+              }
+            />
             <Route path="products">
               <Route
                 index
@@ -148,10 +206,21 @@ function App() {
                   </PrivateRouter>
                 }
               />
-              <Route path="add" element={<ProductAdd onAdd={onHandleAdd} />} />
+              <Route
+                path="add"
+                element={
+                  <PrivateRouter>
+                    <ProductAdd onAdd={onHandleAdd} />
+                  </PrivateRouter>
+                }
+              />
               <Route
                 path="edit/:id"
-                element={<ProductEdit onEdit={HandleronEdit} />}
+                element={
+                  <PrivateRouter>
+                    <ProductEdit onEdit={HandleronEdit} />
+                  </PrivateRouter>
+                }
               />
 
               <Route />

@@ -11,6 +11,8 @@ type CatePropsType = {
 
 const CartPage = (category: CatePropsType) => {
   const [proCate, setProCate] = useState<IProduct[]>([]);
+  const [count, setCount] = useState(0);
+
   const { cateName } = useParams();
 
   useEffect(() => {
@@ -56,6 +58,7 @@ const CartPage = (category: CatePropsType) => {
               <td className="px-6 py-4 whitespace-nowrap">16cm x 18cm x 5cm</td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <button
+                  onClick={() => setCount(count - 1)}
                   data-id="${item.id}"
                   className="bg-[#b97c5e] text-white btn btn-decrease mr-2 px-2"
                 >
@@ -63,10 +66,11 @@ const CartPage = (category: CatePropsType) => {
                 </button>
                 <input
                   type="number"
-                  value="${item.quantity}"
-                  className="border border-gray-500 w-16 pl-2"
+                  value={count}
+                  className="border border-gray-500 w-16 px-2"
                 />
                 <button
+                  onClick={() => setCount(count + 1)}
                   data-id="${item.id}"
                   className="bg-[#b97c5e] text-white btn btn-increase ml-2 px-2"
                 >

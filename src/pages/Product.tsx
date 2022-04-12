@@ -3,14 +3,53 @@ import NavHeader from "../component/NavHeader";
 import "antd/dist/antd.css";
 import { IProduct } from "../types/product";
 import { ICate } from "../types/cate";
+import Pagination from "../component/Pagination";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { list } from "../api/product";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 type ProductList = {
   products: IProduct[];
   category: ICate[];
+  search: string;
 };
 
 const ProductPage = (props: ProductList) => {
-  // console.log("props", props);
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const [searchTirm, setSearchTirm] = useSearchParams();
+  const q = searchTirm.get("q");
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ProductList>();
+  const navigate = useNavigate();
+  const onSubmit: SubmitHandler<ProductList> = async (data) => {
+    navigate(`/products/search?q=${data.search}`);
+    window.location.reload();
+  };
+  useEffect(() => {
+    const searchTirm = async () => {
+      if (q) {
+        // window.location.reload();
+        const { data } = await axios.get(
+          `http://localhost:5000/api/products/search?q=${q}`
+        );
+        setProducts(data);
+        // console.log(1);
+      } else {
+        const { data } = await list();
+        setProducts(data);
+      }
+    };
+    searchTirm();
+  }, []);
+  const { id } = useParams();
+
   return (
     <div className="">
       <header
@@ -64,6 +103,22 @@ const ProductPage = (props: ProductList) => {
             </a>
           </div>
 
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <input
+              type="text"
+              className="py-2  px-2 outline-0 border"
+              placeholder="Search.."
+              {...register("search")}
+            />
+            <button
+              className="bg-[#b97c5e] hover:bg-[#b96c4e] text-white px-3 py-2"
+              type="submit"
+            >
+              Search
+            </button>
+          </form>
+
+          {/* <h2>Search: {q}</h2> */}
           <div className="flex items-center">
             <div className="">
               <p>Showing a single result</p>
@@ -123,7 +178,7 @@ const ProductPage = (props: ProductList) => {
               </div>
             );
           })}
-
+          <Outlet />
           {/* <div className="relative  pt-10 overlay">
             <div className="relative  product-item  text-center">
               <div className="info-item ">
@@ -156,57 +211,7 @@ const ProductPage = (props: ProductList) => {
               S&nbsp;A&nbsp;L&nbsp;E
             </span>
           </div>
-          <div className="relative  pt-10 overlay">
-            <div className="relative  product-item  text-center">
-              <div className="info-item ">
-                <img
-                  src="https://i.imgur.com/h5Ypedh.jpg"
-                  className="w-full h-full"
-                  alt=""
-                />
-              </div>
-
-              <div className="absolute top-1/3 w-full ">
-                <a className=" text-over" href="">
-                  <button className="w-full h-12 px-6 text-indigo-100  transition-colors duration-150 bg-[#b97c5e] hover:bg-[#b96c4e] rounded-lg focus:shadow-outline ">
-                    Add to cart
-                  </button>
-                </a>
-              </div>
-              <div className="">
-                <h2 className="text-2xl font-serif pb-2  pt-3">
-                  Ceramic Plate
-                </h2>
-                <span className="font-medium text-xl text-[#b97c5e] font-bold">
-                  $123{" "}
-                </span>
-              </div>
-            </div>
-          </div>
-          <div className="relative  pt-10 overlay">
-            <div className="relative  product-item  text-center">
-              <div className="info-item ">
-                <img
-                  src="https://i.imgur.com/eseUXCl.jpg"
-                  className="w-full h-full"
-                  alt=""
-                />
-              </div>
-
-              <div className="absolute top-1/3 w-full ">
-                <a className=" text-over" href="">
-                  <button className="w-full h-12 px-6 text-indigo-100  transition-colors duration-150 bg-[#b97c5e] hover:bg-[#b96c4e] rounded-lg focus:shadow-outline ">
-                    Add to cart
-                  </button>
-                </a>
-              </div>
-              <div className="">
-                <h2 className="text-2xl font-serif pb-2  pt-3">Seramic Vase</h2>
-                <span className="font-medium text-xl text-[#b97c5e] font-bold">
-                  $204{" "}
-                </span>
-              </div>
-            </div>
+         
           </div> */}
         </div>
 
@@ -312,7 +317,7 @@ const ProductPage = (props: ProductList) => {
           </div>
         </div>
       </div>
-      <nav aria-label="Page navigation " className="max-w-2xl py-5 ml-[330px]">
+      {/* <nav aria-label="Page navigation " className="max-w-2xl py-5 ml-[330px]">
         <ul className="inline-flex  ">
           <li>
             <button className="h-10 px-3 text-black font-medium transition-colors duration-150 bg-white rounded-l-lg focus:shadow-outline hover:bg-indigo-100">
@@ -340,7 +345,12 @@ const ProductPage = (props: ProductList) => {
             </button>
           </li>
         </ul>
-      </nav>
+      </nav> */}
+      <Pagination
+        postPerPage={props.postPerPage}
+        totalPosts={props.totalPosts}
+        paginate={props.paginate(id)}
+      />
     </div>
   );
 };

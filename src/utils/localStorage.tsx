@@ -1,5 +1,5 @@
 import { IUser } from "../types/User";
-
+import { IProduct } from "../types/product";
 export const authenticated = (user: IUser, next: () => void) => {
   localStorage.setItem("user", JSON.stringify(user));
   next();

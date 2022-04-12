@@ -20,3 +20,7 @@ export const add = (cate: ICate) => {
   const url = "/category";
   return instance.post(url, cate);
 };
+export const addcart = (productcart: ICate) => {
+  const url = `/category`;
+  return instance.post(url, productcart);
+};

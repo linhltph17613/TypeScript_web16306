@@ -10,6 +10,8 @@ import { IProduct } from "../types/product";
 
 const DetailProduct = () => {
   const [proCate, setProCate] = useState<IProduct[]>([]);
+  const [status, setStatus] = useState(false);
+
   const { id } = useParams();
   const [products, setProduct] = useState<IProduct>();
   useEffect(() => {
@@ -20,6 +22,51 @@ const DetailProduct = () => {
     };
     getProducts();
   }, []);
+
+  let cart = [];
+  if (localStorage.getItem("cart")) {
+    cart = JSON.parse(localStorage.getItem("cart"));
+  }
+  //AddToCart..
+  const addToCart = (product) => {
+    const existProduct = cart.find((item) => {
+      console.log(item);
+      return item._id === product._id;
+    });
+    const newProduct = { ...product, quantity: 1, total: product.price * 1 };
+    if (!existProduct) {
+      cart.push(newProduct);
+    } else {
+      existProduct.quantity += newProduct.quantity;
+      newProduct.total += newProduct.quantity * existProduct.price;
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
+
+  // let cart = [];
+
+  // if (localStorage.getItem("cart")) {
+  //   cart = JSON.parse(localStorage.getItem("cart"));
+  // }
+  // const addToCart = (product) => {
+  //   const existProduct = cart.find((item) => {
+  //     console.log(item);
+  //     return item._id == product._id;
+  //   });
+  //   const newItem = {
+  //     ...product,
+  //     quantity: number ? +number : 1,
+  //     total: product.price * number,
+  //   };
+  //   if (!existProduct) {
+  //     cart.push(newItem);
+  //   } else {
+  //     console.log(existProduct);
+  //     existProduct.quantity += newItem.quantity;
+  //     existProduct.total = +existProduct.price;
+  //   }
+  //   localStorage.setItem("cart", JSON.stringify(cart));
+  // };
 
   return (
     <div>
@@ -80,6 +127,7 @@ const DetailProduct = () => {
                 id=""
               />
               <button
+                onClick={() => addToCart(products)}
                 id="AddToCart"
                 className="inline-flex items-center h-10 px-5 text-white transition-colors duration-150 bg-[#B97C5E] rounded-lg focus:shadow-outline hover:bg-[#b96c4e]"
               >

@@ -46,7 +46,13 @@ const ProductManager = (props: ProductManagerProps) => {
                 <td></td>
 
                 <td>
-                  <button onClick={() => props.onRemove(item._id)}>
+                  <button
+                    onClick={() => {
+                      if (confirm("Bạn có muốn xóa không?")) {
+                        props.onRemove(item._id);
+                      }
+                    }}
+                  >
                     Remove
                   </button>
                   <a className="px-2" href={`products/edit/${item._id}`}>

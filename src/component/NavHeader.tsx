@@ -39,7 +39,7 @@ const NavHeader = (props: Props) => {
           <li>
             <a
               className="block py-4 px-4 text-black font-medium hover:text-[#B97C5E];"
-              href="/products"
+              href="/products/1"
             >
               SHOP
             </a>
@@ -80,7 +80,7 @@ const NavHeader = (props: Props) => {
               </li>
               <li>
                 <div
-                  className="text-black-500 font-medium"
+                  className="text-black-500 font-medium cursor-pointer"
                   id="logout"
                   onClick={() => Logout()}
                 >
