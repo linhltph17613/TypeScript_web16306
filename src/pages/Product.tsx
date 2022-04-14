@@ -48,6 +48,7 @@ const ProductPage = (props: ProductList) => {
     };
     searchTirm();
   }, []);
+
   const { id } = useParams();
 
   return (

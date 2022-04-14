@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
 
@@ -9,6 +9,9 @@ const NavHeader = (props: Props) => {
   const navigate = useNavigate();
   const Logout = () => {
     localStorage.removeItem("user");
+    localStorage.clear();
+    toastr.success("Đăng xuất thành công");
+
     navigate("/");
   };
   // const logout = document.querySelector("#logout");
@@ -21,62 +24,62 @@ const NavHeader = (props: Props) => {
       <nav className="menu">
         <ul className="flex text-sm">
           <li className="hover:text-[#b97c5e]">
-            <a
+            <Link
               className="block py-4 px-4 text-black font-medium hover:text-[#b97c5e];"
-              href="/"
+              to={"/"}
             >
               HOME
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               className="block py-4 px-4 text-black font-medium hover:text-[#B97C5E];"
-              href="/about"
+              to={"/about"}
             >
               ABOUT
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               className="block py-4 px-4 text-black font-medium hover:text-[#B97C5E];"
-              href="/products/1"
+              to={"/products/1"}
             >
               SHOP
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               className="block py-4 px-3 text-black font-medium hover:text-[#B97C5E];"
-              href="/contact"
+              to={"/contact"}
             >
               CONTACT
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               className="block py-4 px-3 text-black font-medium hover:text-[#B97C5E];"
-              href="/admin/dashboard"
+              to={"/admin/dashboard"}
             >
               ADMIN
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               className="block py-4 px-3 text-black font-medium hover:text-[#B97C5E];"
-              href="/login"
+              to={"/login"}
             >
               <i className="fa-solid fa-user"></i>
-            </a>
+            </Link>
             <ul className="subnav ">
               <li>
-                <a className="text-black-500 font-medium" href="/login">
+                <Link className="text-black-500 font-medium" to={"/login"}>
                   LOGIN
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="text-black-500 font-medium" href="/register">
+                <Link className="text-black-500 font-medium" to={"/register"}>
                   SIGNUP
-                </a>
+                </Link>
               </li>
               <li>
                 <div
